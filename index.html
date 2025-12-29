@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elf Intelligence: A Holiday Explainer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Holiday Warmth (Cream, Deep Red, Pine Green, Slate Blue for Tech) -->
+    
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #FDFBF7; /* Creamy White */
+            color: #1F2937;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Lora', serif;
+        }
+        .holiday-red { color: #B91C1C; }
+        .holiday-green { color: #15803D; }
+        .tech-blue { color: #3B82F6; }
+        
+        .card-shadow {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .card-shadow:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Custom Pulse for Run Button and Next Steps */
+        @keyframes subtle-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); transform: scale(1); }
+            50% { box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.4); transform: scale(1.05); }
+        }
+        .animate-glow {
+            animation: subtle-glow 2s infinite;
+        }
+
+        /* Custom Button Styles for HITL */
+        .hitl-btn {
+            transition: all 0.2s ease;
+            border-bottom-width: 4px;
+        }
+        .hitl-btn:active {
+            border-bottom-width: 0px;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+<body class="bg-[#FDFBF7]">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- EASTER EGG TRIGGER: Added ID and click handler -->
+                <div class="flex items-center cursor-pointer select-none" id="easterEggTrigger" onclick="triggerEasterEgg()">
+                    <span class="text-2xl font-bold text-gray-800">🎄 Elf Intelligence <span class="text-sm font-normal text-gray-500 ml-2 hidden sm:inline">A Holiday Guide</span></span>
+                </div>
+                <div class="flex items-center space-x-4 text-sm font-medium">
+                    <button onclick="scrollToSection('basics')" class="text-gray-600 hover:text-[#B91C1C] transition hidden sm:inline-block">The Basics</button>
+                    <button onclick="scrollToSection('anatomy')" class="text-gray-600 hover:text-[#15803D] transition hidden sm:inline-block">The Brain</button>
+                    <button onclick="scrollToSection('patterns')" class="text-gray-600 hover:text-[#3B82F6] transition hidden sm:inline-block">Thinking</button>
+                    <button onclick="scrollToSection('hitl')" class="text-gray-600 hover:text-[#B91C1C] transition">Santa in the Loop</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="max-w-4xl mx-auto px-4 py-16 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Understanding <span class="holiday-red">AI Agents</span><br>(The "Smart Elves" of Software)</h1>
+        <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+            Discover how modern AI is moving from "Chatbots that talk" to "Agents that do."
+        </p>
+        <div class="flex justify-center gap-4">
+            <button onclick="scrollToSection('basics')" class="bg-[#B91C1C] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-red-800 transition transform hover:-translate-y-1">Start the Journey 🎅</button>
+        </div>
+    </section>
+
+    <!-- Section 1: The Basics (Comparison) -->
+    <section id="basics" class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Standard Apps vs. AI Agents</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Think of standard apps like a <strong>recipe</strong>: they follow exact steps. 
+                    An AI Agent is like a <strong>Smart Elf</strong>: you give it a goal ("Plan the party"), and it figures out the steps itself.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <!-- Text Column -->
+                <div class="space-y-6">
+                    <div class="p-6 bg-gray-50 rounded-xl card-shadow border-l-4 border-gray-400">
+                        <h3 class="font-bold text-xl text-gray-700 mb-2">📱 Standard Apps</h3>
+                        <p class="text-gray-600 text-sm">Rigid. Needs exact instructions. If the "Gift" is out of stock, the app gives an error or stops.</p>
+                        <ul class="mt-2 text-sm text-gray-500 list-disc list-inside">
+                            <li>Follows a flowchart</li>
+                            <li>Cannot improvise</li>
+                            <li>"Computer says no"</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-[#F0FDF4] rounded-xl card-shadow border-l-4 border-[#15803D]">
+                        <h3 class="font-bold text-xl text-[#15803D] mb-2">🧝 AI Agent</h3>
+                        <p class="text-gray-700 text-sm">Flexible. Understands goals. If the "Gift" is out of stock, it searches for alternatives or asks you.</p>
+                        <ul class="mt-2 text-sm text-gray-600 list-disc list-inside">
+                            <li>Reasons step-by-step</li>
+                            <li>Uses tools (Search, Email)</li>
+                            <li>"I found a solution!"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chart Column -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-center items-center">
+                    <h4 class="text-center font-bold text-gray-500 mb-4 text-sm uppercase tracking-wide">Capability Comparison</h4>
+                    <div class="chart-container">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-gray-400 mt-2">Agents score higher in adaptability and complexity handling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Anatomy of an Agent -->
+    <section id="anatomy" class="py-16 bg-[#FDFBF7]">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Anatomy of an Elf</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Just like an elf needs a brain, hands, and a workshop, an AI Agent needs specific components to work.
+                    Click the slices below to learn more.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Chart Side -->
+                <div class="order-2 md:order-1 flex flex-col items-center">
+                     <div class="chart-container">
+                        <canvas id="anatomyChart"></canvas>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-4 text-center">Click chart segments to see details</p>
+                </div>
+
+                <!-- Detail Side -->
+                <div class="order-1 md:order-2">
+                    <div id="anatomy-detail-card" class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-[#3B82F6] min-h-[300px] flex flex-col justify-center transition-all duration-300 transform">
+                        <div class="text-center">
+                            <!-- Content populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Design Patterns (The Simulation) -->
+    <section id="patterns" class="py-16 bg-white border-y border-gray-100">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">How Agents "Think" (Design Patterns)</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    The book describes "patterns"—different ways the agent can structure its thinking. 
+                    Let's see how an Agent handles a request: <span class="font-bold text-[#B91C1C]">"Find a gift for Dad who likes pickleball and is under $50."</span>
+                </p>
+            </div>
+
+            <!-- Tab Navigation for Patterns -->
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <button onclick="setPattern('zeroshot')" id="btn-zeroshot" class="px-5 py-2 rounded-full border-2 border-gray-200 font-bold hover:border-[#3B82F6] transition active-pattern text-sm sm:text-base">Just Ask (Zero Shot)</button>
+                <button onclick="setPattern('cot')" id="btn-cot" class="px-5 py-2 rounded-full border-2 border-gray-200 font-bold hover:border-[#3B82F6] transition text-sm sm:text-base">Chain of Thought</button>
+                <button onclick="setPattern('react')" id="btn-react" class="px-5 py-2 rounded-full border-2 border-gray-200 font-bold hover:border-[#3B82F6] transition text-sm sm:text-base">ReAct (Tools)</button>
+                <button onclick="setPattern('multi')" id="btn-multi" class="px-5 py-2 rounded-full border-2 border-gray-200 font-bold hover:border-[#3B82F6] transition text-sm sm:text-base">Team of Agents</button>
+            </div>
+
+            <!-- Simulation Window -->
+            <div class="bg-gray-900 rounded-xl p-6 shadow-2xl max-w-3xl mx-auto font-mono text-sm md:text-base min-h-[400px] flex flex-col transition-all duration-500 ease-in-out">
+                <div class="flex justify-between items-center border-b border-gray-700 pb-4 mb-4">
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="text-gray-400 text-xs">Agent Terminal</div>
+                </div>
+                
+                <div id="simulation-output" class="space-y-4 flex-grow">
+                    <!-- Dynamic content will appear here -->
+                    <div class="text-green-400">$ User Request: "Find a gift for Dad who likes pickleball, under $50."</div>
+                    <div class="text-gray-400 italic">Select a pattern above to see how the agent processes this...</div>
+                </div>
+
+                <div class="pt-4 border-t border-gray-700 mt-6 flex justify-between items-center">
+                    <span id="pattern-desc" class="text-gray-400 text-xs flex-1 mr-4">Waiting for input...</span>
+                    <!-- Updated Button: "Run", Play Icon, Glow ID -->
+                    <button id="btn-run-sim" onclick="runSimulation()" class="bg-[#3B82F6] hover:bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 transform active:scale-95 shadow-lg">
+                        <span>▶</span> Run
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Human in the Loop -->
+    <section id="hitl" class="py-16 bg-[#FDFBF7]">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Santa in the Loop (HITL)</h2>
+            <p class="text-gray-600 mb-10 max-w-2xl mx-auto">
+                Agents are smart, but they make mistakes. The "Santa in the Loop" pattern means a person (you!) 
+                approves critical actions before they happen. Like Santa checking the list twice.
+            </p>
+
+            <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-200 max-w-2xl mx-auto relative overflow-hidden text-left">
+                <!-- Status Bar -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-[#B91C1C]" id="hitl-status-bar"></div>
+                
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pending Action Request</h3>
+                    <span id="hitl-status-badge" class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-bold">Needs Review</span>
+                </div>
+
+                <p class="text-gray-500 text-sm mb-6">Agent "ShoppingBot" wants to execute the following:</p>
+
+                <!-- Email Preview Card -->
+                <div id="hitl-content-area" class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-6 transition-all duration-300">
+                    <p class="font-bold text-gray-700">Action: <span class="font-normal">Send Email</span></p>
+                    <p class="font-bold text-gray-700">To: <span class="font-normal">Dad@email.com</span></p>
+                    <p class="font-bold text-gray-700">Subject: <span class="font-normal">Your Christmas Gift</span></p>
+                    <hr class="my-3 border-gray-200">
+                    <p class="font-bold text-gray-700 mb-1">Body:</p>
+                    <p class="text-gray-600 italic font-serif">"Hey Dad, I bought you 100 generic pickleballs. They will arrive tomorrow. Total cost: $49.99."</p>
+                </div>
+
+                <!-- Interaction Area -->
+                <div id="hitl-controls">
+                    <div class="flex justify-center gap-4">
+                        <button onclick="hitlReject()" class="hitl-btn flex-1 bg-red-100 text-red-700 border-red-300 hover:bg-red-200 hover:border-red-400 px-4 py-3 rounded-xl font-bold transition flex justify-center items-center gap-2">
+                            <span>✏️</span> Reject / Edit
+                        </button>
+                        <button onclick="hitlApprove()" class="hitl-btn flex-1 bg-green-100 text-green-700 border-green-300 hover:bg-green-200 hover:border-green-400 px-4 py-3 rounded-xl font-bold transition flex justify-center items-center gap-2">
+                            <span>✅</span> Approve
+                        </button>
+                    </div>
+                    <div id="hitl-error-msg" class="text-red-500 text-sm font-bold text-center mt-3 hidden animate-pulse"></div>
+                </div>
+
+                <!-- Feedback Text Area (Hidden initially) -->
+                <div id="hitl-feedback-input" class="hidden">
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Feedback to Agent:</label>
+                    <textarea id="feedback-text" rows="2" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none" placeholder="Explain why this is wrong..."></textarea>
+                    <button onclick="submitFeedback()" class="mt-3 w-full bg-[#3B82F6] text-white font-bold py-2 rounded-lg hover:bg-blue-600 transition">Submit Feedback</button>
+                </div>
+
+            </div>
+            
+            <button onclick="resetHITL()" id="hitl-reset-btn" class="mt-8 text-gray-400 underline hover:text-gray-600 text-sm hidden">Reset Demo</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-4 font-serif">Why This Matters</h3>
+            <p class="text-gray-400 mb-8 max-w-xl mx-auto">
+                Agentic workflows allow us to build software that can help with the <strong>messy, unpredictable</strong> parts of life. 
+                Instead of just calculating numbers, they can help us plan, create, and solve problems.
+            </p>
+            <div class="border-t border-gray-700 pt-8 text-sm text-gray-500">
+                <p>Based on "Agentic Design Patterns" • Visualized for the Family</p>
+                <p class="mt-4 opacity-75">Built with Gemini 3 and Joe</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- SNOW EASTER EGG LOGIC ---
+        let snowActive = false;
+        let eggClickCount = 0;
+        let eggTimer;
+
+        function triggerEasterEgg() {
+            eggClickCount++;
+            clearTimeout(eggTimer);
+            eggTimer = setTimeout(() => { eggClickCount = 0; }, 2000); // Reset if not clicked rapidly
+
+            if (eggClickCount >= 5 && !snowActive) {
+                startSnow();
+                eggClickCount = 0;
+            }
+        }
+
+        function startSnow() {
+            snowActive = true;
+            const canvas = document.createElement('canvas');
+            canvas.id = 'snowCanvas';
+            canvas.style.position = 'fixed';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            canvas.style.pointerEvents = 'none'; // Click through
+            canvas.style.zIndex = '9999';
+            document.body.appendChild(canvas);
+
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            // Handle Resize
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+                // Re-initialize ground array size, keep data if possible or just reset
+                ground = new Array(width).fill(0); 
+            });
+
+            // Particles
+            const particles = [];
+            let ground = new Array(width).fill(0);
+            const maxParticles = 400;
+
+            for(let i=0; i<maxParticles; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height - height, // Start above
+                    r: Math.random() * 2.5 + 1, // Radius
+                    d: Math.random() * maxParticles // Density (sway)
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+                ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+                ctx.beginPath();
+
+                for(let i=0; i<maxParticles; i++) {
+                    const p = particles[i];
+                    ctx.moveTo(p.x, p.y);
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+                }
+                ctx.fill();
+                update();
+                drawGround();
+                requestAnimationFrame(draw);
+            }
+
+            function update() {
+                for(let i=0; i<maxParticles; i++) {
+                    const p = particles[i];
+                    p.y += Math.cos(p.d) + 1 + p.r / 2; // Fall speed based on size
+                    p.x += Math.sin(p.d); // Sway
+
+                    // Wrap around sides
+                    if (p.x > width + 5) p.x = -5;
+                    if (p.x < -5) p.x = width + 5;
+
+                    p.d += 0.01;
+
+                    // Ground Collision / Accumulation Logic
+                    const floorIndex = Math.floor(p.x);
+                    // Bounds check
+                    if (floorIndex >= 0 && floorIndex < width) {
+                        const groundHeight = ground[floorIndex];
+                        
+                        if (p.y + p.r > height - groundHeight) {
+                            // Snowflake hit the pile!
+                            // Add to pile (smoothing nearby pixels)
+                            const addAmount = p.r * 0.5; // Scale accumulation speed
+                            ground[floorIndex] += addAmount;
+                            
+                            // Simple smoothing
+                            if(floorIndex > 0) ground[floorIndex-1] += addAmount * 0.5;
+                            if(floorIndex < width-1) ground[floorIndex+1] += addAmount * 0.5;
+
+                            // Respawn
+                            p.x = Math.random() * width;
+                            p.y = -10;
+                        }
+                    }
+                }
+            }
+
+            function drawGround() {
+                ctx.beginPath();
+                ctx.moveTo(0, height);
+                for(let i = 0; i < width; i++) {
+                    ctx.lineTo(i, height - ground[i]);
+                }
+                ctx.lineTo(width, height);
+                ctx.closePath();
+                ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+                ctx.fill();
+            }
+
+            draw();
+        }
+
+        // --- DATA & STATE ---
+        const anatomyData = {
+            labels: ['The Brain (LLM)', 'Tools (Hands)', 'Memory (Context)', 'Planning (Orchestrator)'],
+            data: [40, 25, 15, 20],
+            colors: ['#3B82F6', '#F59E0B', '#10B981', '#8B5CF6'],
+            details: [
+                { title: "The Brain (LLM)", icon: "🧠", text: "The Large Language Model. It understands language, logic, and general world knowledge. It decides 'what' to do." },
+                { title: "Tools (Hands)", icon: "🛠️", text: "External capabilities. The Brain can't browse the web or send emails alone. Tools bridge the gap to the real world." },
+                { title: "Memory (Context)", icon: "📚", text: "Short-term and long-term storage. It remembers what you said 5 minutes ago and learns from past mistakes." },
+                { title: "Planning (Orchestrator)", icon: "📋", text: "The strategy layer. It breaks big goals into small steps, checks progress, and handles errors." }
+            ]
+        };
+
+        let currentPattern = 'zeroshot';
+        let hitlState = 'initial'; // initial, editing, revised, approved
+
+        const patterns = {
+            'zeroshot': {
+                name: "Zero Shot (Direct Answer)",
+                desc: "The agent tries to answer immediately based on what it already knows. Fast, but risky for complex tasks.",
+                steps: [
+                    { type: 'thought', text: "Analyzing request: Gift for Dad, Pickleball, <$50." },
+                    { type: 'action', text: "Generating idea based on training data..." },
+                    { type: 'output', text: "Suggestion: A generic pack of pickleballs." }
+                ]
+            },
+            'cot': {
+                name: "Chain of Thought",
+                desc: "The agent explicitly talks through its reasoning step-by-step. This reduces errors significantly.",
+                steps: [
+                    { type: 'thought', text: "Step 1: Identify constraints. User needs a pickleball gift under $50." },
+                    { type: 'thought', text: "Step 2: Brainstorm categories. Paddles can be pricey. Clothing is risky for fit. Accessories are good." },
+                    { type: 'thought', text: "Step 3: Evaluate options. Balls are boring. A paddle cover is nice. A pickleball bag is practical." },
+                    { type: 'output', text: "Suggestion: A branded pickleball sling bag." }
+                ]
+            },
+            'react': {
+                name: "ReAct (Reason + Act)",
+                desc: "The Gold Standard. The agent Thinks, Acts (uses a tool), Observes the result, and repeats.",
+                steps: [
+                    { type: 'thought', text: "I need to find current prices for pickleball gifts to ensure they are under $50." },
+                    { type: 'call', text: "TOOL: Search_Amazon('top rated pickleball gifts under $50')" },
+                    { type: 'obs', text: "OBSERVATION: Found 'Pickleball Retriever ($15)', 'Monogrammed Paddle Cover ($25)', 'Funny Dinking Shirt ($12)'." },
+                    { type: 'thought', text: "The Paddle Cover has high ratings. I should check delivery times." },
+                    { type: 'call', text: "TOOL: Check_Delivery('Paddle Cover')" },
+                    { type: 'obs', text: "OBSERVATION: Arrives by Dec 24th." },
+                    { type: 'output', text: "Recommendation: Monogrammed Paddle Cover ($25). Arrives in time for Christmas!" }
+                ]
+            },
+            'multi': {
+                name: "Multi-Agent Collaboration",
+                desc: "A 'Planner' elf breaks the task down and delegates work to specialist elves (Researcher, Shopper, Buyer).",
+                steps: [
+                    { type: 'thought', text: "<span class='text-purple-300 font-bold'>[Planner Agent]</span> Goal: Gift for Dad. Delegate research." },
+                    { type: 'call', text: "DELEGATE: Call Researcher_Agent(topic='Pickleball Trends')" },
+                    { type: 'obs', text: "<span class='text-orange-300 font-bold'>[Researcher]</span> Top trends: Carbon Paddle, Sling Bag, Custom Cover." },
+                    { type: 'thought', text: "<span class='text-purple-300 font-bold'>[Planner]</span> 'Custom Cover' is good. Shopper, check prices." },
+                    { type: 'call', text: "DELEGATE: Call Shopper_Agent(item='Custom Cover', max_price=50)" },
+                    { type: 'obs', text: "<span class='text-green-300 font-bold'>[Shopper]</span> Found: 'Monogrammed Cover' ($35) on Etsy." },
+                    { type: 'thought', text: "<span class='text-purple-300 font-bold'>[Planner]</span> Good price. Buyer, execute purchase." },
+                    { type: 'call', text: "DELEGATE: Call Buyer_Agent(item='Monogrammed Cover', price=35)" },
+                    { type: 'obs', text: "<span class='text-red-300 font-bold'>[Buyer]</span> Order #9921 placed. Shipped to Dad's address." },
+                    { type: 'output', text: "<span class='text-purple-300 font-bold'>[Planner]</span> Mission Complete. Gift is on the way." }
+                ]
+            }
+        };
+
+        // --- CHART INITIALIZATION ---
+        
+        // Comparison Chart
+        const ctxComparison = document.getElementById('comparisonChart').getContext('2d');
+        new Chart(ctxComparison, {
+            type: 'bar',
+            data: {
+                labels: ['Following Rules', 'Adaptability', 'Creativity', 'Reliability'],
+                datasets: [
+                    {
+                        label: 'Standard Apps',
+                        data: [100, 10, 0, 95],
+                        backgroundColor: '#9CA3AF',
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'AI Agents',
+                        data: [60, 95, 90, 80],
+                        backgroundColor: ['#15803D', '#15803D', '#15803D', '#15803D'],
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    y: { beginAtZero: true, max: 100, display: false },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Anatomy Chart
+        let selectedAnatomyIndex = 0; // Pre-select Brain
+        const ctxAnatomy = document.getElementById('anatomyChart').getContext('2d');
+        const anatomyChart = new Chart(ctxAnatomy, {
+            type: 'doughnut',
+            data: {
+                labels: anatomyData.labels,
+                datasets: [{
+                    data: anatomyData.data,
+                    backgroundColor: anatomyData.colors,
+                    borderWidth: 0,
+                    hoverOffset: 15,
+                    offset: function(context) {
+                        return context.dataIndex === selectedAnatomyIndex ? 20 : 0;
+                    }
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: { padding: 20 },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        displayColors: true,
+                        callbacks: {
+                            // Hide the title (header) to avoid duplication
+                            title: function() { return ''; },
+                            label: function(context) { return context.label; }
+                        }
+                    }
+                },
+                onClick: (e, activeElements) => {
+                    if (activeElements.length > 0) {
+                        const index = activeElements[0].index;
+                        if (index !== selectedAnatomyIndex) {
+                            selectedAnatomyIndex = index;
+                            updateAnatomyCard(index);
+                            anatomyChart.update();
+                        }
+                    }
+                }
+            }
+        });
+
+        // --- FUNCTIONS ---
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize Anatomy Card with Brain Data
+        updateAnatomyCard(0);
+
+        function updateAnatomyCard(index) {
+            const data = anatomyData.details[index];
+            const card = document.getElementById('anatomy-detail-card');
+            
+            // Fade out
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                card.innerHTML = `
+                    <div class="text-center">
+                        <div class="text-6xl mb-4">${data.icon}</div>
+                        <h3 class="text-2xl font-bold mb-2 transition-colors duration-300" style="color:${anatomyData.colors[index]}">${data.title}</h3>
+                        <p class="text-gray-600 leading-relaxed">${data.text}</p>
+                    </div>
+                `;
+                card.style.borderColor = anatomyData.colors[index];
+                
+                // Fade in
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 300);
+        }
+
+        function setPattern(patternKey) {
+            currentPattern = patternKey;
+            
+            // Reset styles for all buttons
+            document.querySelectorAll('#patterns button').forEach(btn => {
+                btn.classList.remove('bg-gray-100', 'border-[#3B82F6]', 'text-[#3B82F6]', 'bg-blue-50', 'animate-glow', 'ring-4', 'ring-blue-300'); // Remove glow and active styles
+                btn.classList.add('border-gray-200');
+            });
+
+            // Style active button
+            const activeBtn = document.getElementById(`btn-${patternKey}`);
+            activeBtn.classList.remove('border-gray-200');
+            activeBtn.classList.add('border-[#3B82F6]', 'text-[#3B82F6]', 'bg-blue-50');
+
+            runSimulation();
+        }
+
+        function runSimulation() {
+            const outputDiv = document.getElementById('simulation-output');
+            const runBtn = document.getElementById('btn-run-sim');
+            const patternData = patterns[currentPattern];
+            
+            // Reset Run Button State
+            runBtn.classList.remove('animate-glow', 'ring-4', 'ring-blue-300', 'ring-opacity-50');
+            
+            document.getElementById('pattern-desc').innerHTML = patternData.name + ": " + patternData.desc;
+
+            // Clear previous output
+            outputDiv.innerHTML = `<div class="text-green-400 font-bold mb-4">$ User Request: "Find a gift for Dad who likes pickleball, under $50."</div>`;
+
+            let stepIndex = 0;
+
+            function addStep() {
+                if (stepIndex >= patternData.steps.length) {
+                    // --- Animation Finished Logic ---
+                    
+                    // 1. Highlight Run Button (Subtle option to re-run)
+                    setTimeout(() => {
+                        runBtn.classList.add('ring-2', 'ring-blue-200'); // Static highlight instead of pulse to reduce noise
+                    }, 500);
+
+                    // 2. Nudge User to Next Pattern
+                    if (currentPattern === 'zeroshot') {
+                        setTimeout(() => {
+                            const nextBtn = document.getElementById('btn-cot');
+                            nextBtn.classList.add('animate-glow', 'border-blue-300'); 
+                        }, 800);
+                    } else if (currentPattern === 'cot') {
+                        setTimeout(() => {
+                            const nextBtn = document.getElementById('btn-react');
+                            nextBtn.classList.add('animate-glow', 'border-blue-300'); 
+                        }, 800);
+                    } else if (currentPattern === 'react') {
+                         setTimeout(() => {
+                            const nextBtn = document.getElementById('btn-multi');
+                            nextBtn.classList.add('animate-glow', 'border-blue-300'); 
+                        }, 800);
+                    }
+                    
+                    return;
+                }
+
+                const step = patternData.steps[stepIndex];
+                const div = document.createElement('div');
+                div.className = "p-2 rounded mb-2 animate-pulse";
+                
+                if (step.type === 'thought') {
+                    div.className = "text-blue-300 pl-4 border-l-2 border-blue-500 bg-gray-800";
+                    div.innerHTML = `<span class="opacity-50">Thinking:</span> ${step.text}`;
+                } else if (step.type === 'call') {
+                    div.className = "text-yellow-300 pl-4 border-l-2 border-yellow-500 bg-gray-800";
+                    div.innerHTML = `<span class="opacity-50">Action:</span> ${step.text}`;
+                } else if (step.type === 'obs') {
+                    div.className = "text-gray-400 pl-8 italic";
+                    div.innerHTML = `${step.text}`;
+                } else if (step.type === 'output') {
+                    div.className = "text-white font-bold bg-[#15803D] p-4 rounded mt-4 text-center border border-[#15803D]";
+                    div.innerHTML = `${step.text}`;
+                }
+
+                outputDiv.appendChild(div);
+                
+                // Remove pulse effect from the text line
+                setTimeout(() => div.classList.remove('animate-pulse'), 500);
+
+                stepIndex++;
+                setTimeout(addStep, 1000); 
+            }
+
+            addStep();
+        }
+
+        // --- HITL LOGIC ---
+
+        function hitlReject() {
+            if (hitlState === 'initial') {
+                hitlState = 'editing';
+                document.getElementById('hitl-controls').classList.add('hidden');
+                document.getElementById('hitl-feedback-input').classList.remove('hidden');
+                document.getElementById('hitl-error-msg').classList.add('hidden');
+                
+                // Pre-fill for demo ease
+                const textarea = document.getElementById('feedback-text');
+                textarea.value = "";
+                let i = 0;
+                const txt = "100 balls is too many. Get something higher quality.";
+                const typeInterval = setInterval(() => {
+                    textarea.value += txt.charAt(i);
+                    i++;
+                    if (i > txt.length) clearInterval(typeInterval);
+                }, 30);
+            }
+        }
+
+        function submitFeedback() {
+            hitlState = 'thinking';
+            const feedbackArea = document.getElementById('hitl-feedback-input');
+            feedbackArea.classList.add('hidden');
+            
+            const contentArea = document.getElementById('hitl-content-area');
+            contentArea.innerHTML = `
+                <div class="flex items-center justify-center h-40 space-x-2">
+                    <div class="w-4 h-4 bg-blue-500 rounded-full animate-bounce"></div>
+                    <div class="w-4 h-4 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                    <div class="w-4 h-4 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                    <span class="text-gray-500 ml-2">Agent is revising plan...</span>
+                </div>
+            `;
+
+            setTimeout(() => {
+                hitlState = 'revised';
+                document.getElementById('hitl-controls').classList.remove('hidden');
+                
+                contentArea.innerHTML = `
+                    <p class="font-bold text-gray-700">Action: <span class="font-normal">Send Email</span></p>
+                    <p class="font-bold text-gray-700">To: <span class="font-normal">Dad@email.com</span></p>
+                    <p class="font-bold text-gray-700">Subject: <span class="font-normal">Your Christmas Gift</span></p>
+                    <hr class="my-3 border-gray-200">
+                    <p class="font-bold text-gray-700 mb-1">Body:</p>
+                    <p class="text-gray-600 italic font-serif">"Hey Dad, sending you a <span class="bg-yellow-200 px-1">Custom Paddle Cover</span> with your initials. Hope it helps your game!"</p>
+                `;
+                
+                document.getElementById('hitl-status-badge').innerText = "Revised Draft";
+                document.getElementById('hitl-status-badge').className = "bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-bold";
+            }, 2500);
+        }
+
+        function hitlApprove() {
+            if (hitlState === 'initial') {
+                const errDiv = document.getElementById('hitl-error-msg');
+                errDiv.innerText = "Wait! Are you sure 100 generic balls is a good gift? Check details first!";
+                errDiv.classList.remove('hidden');
+                setTimeout(() => errDiv.classList.add('hidden'), 4000);
+                return;
+            }
+
+            // Success state
+            document.getElementById('hitl-controls').classList.add('hidden');
+            document.getElementById('hitl-status-bar').className = "absolute top-0 left-0 w-full h-2 bg-green-500";
+            document.getElementById('hitl-status-badge').innerText = "Approved";
+            document.getElementById('hitl-status-badge').className = "bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-bold";
+
+            const contentArea = document.getElementById('hitl-content-area');
+            contentArea.innerHTML = `
+                <div class="flex flex-col items-center justify-center h-40 text-center">
+                    <div class="text-5xl mb-2">🚀</div>
+                    <h3 class="text-xl font-bold text-gray-800">Action Executed!</h3>
+                    <p class="text-gray-500">The email has been sent successfully.</p>
+                </div>
+            `;
+            
+            document.getElementById('hitl-reset-btn').classList.remove('hidden');
+        }
+
+        function resetHITL() {
+            hitlState = 'initial';
+            document.getElementById('hitl-reset-btn').classList.add('hidden');
+            document.getElementById('hitl-controls').classList.remove('hidden');
+            document.getElementById('hitl-status-bar').className = "absolute top-0 left-0 w-full h-2 bg-[#B91C1C]";
+            document.getElementById('hitl-status-badge').innerText = "Needs Review";
+            document.getElementById('hitl-status-badge').className = "bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-bold";
+            
+            document.getElementById('hitl-content-area').innerHTML = `
+                <p class="font-bold text-gray-700">Action: <span class="font-normal">Send Email</span></p>
+                <p class="font-bold text-gray-700">To: <span class="font-normal">Dad@email.com</span></p>
+                <p class="font-bold text-gray-700">Subject: <span class="font-normal">Your Christmas Gift</span></p>
+                <hr class="my-3 border-gray-200">
+                <p class="font-bold text-gray-700 mb-1">Body:</p>
+                <p class="text-gray-600 italic font-serif">"Hey Dad, I bought you 100 generic pickleballs. They will arrive tomorrow. Total cost: $49.99."</p>
+            `;
+        }
+
+        // Initialize simulation
+        window.onload = function() {
+            setPattern('zeroshot');
+        }
+
+    </script>
+</body>
+</html>
