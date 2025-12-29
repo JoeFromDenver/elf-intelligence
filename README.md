@@ -1,9 +1,8 @@
 # elf-intelligence
-2025 holiday themed explainer for AI Agents
 
-# Elf Intelligence: A Holiday Explainer 🎄
+# [Elf Intelligence: A Holiday Explainer 🎄](https://joefromdenver.github.io/elf-intelligence)
 
-## Elf Intelligence is a fun, interactive guide designed to explain the concept of AI Agents (the "Smart Elves" of software) to friends and family. It uses festive analogies, interactive simulations, and a holiday theme to break down complex topics like Large Language Models (LLMs), Tools, and Agentic Workflows.
+## [Elf Intelligence](https://joefromdenver.github.io/elf-intelligence) is a fun, interactive guide designed to explain the concept of AI Agents (the "Smart Elves" of software) to friends and family. It uses festive analogies, interactive simulations, and a holiday theme to break down complex topics like Large Language Models (LLMs), Tools, and Agentic Workflows.
 
 ## Features
 
